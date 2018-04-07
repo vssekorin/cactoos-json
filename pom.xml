@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.jcabi</groupId>
+    <artifactId>parent</artifactId>
+    <version>0.49.3</version>
+  </parent>
+  <groupId>com.vssekorin</groupId>
+  <artifactId>cactoos-json</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <url>https://github.com/VsSekorin/cactoos-json</url>
+  <name>cactoos-json</name>
+  <description>Cactoos family: JSON library.</description>
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/VsSekorin/cactoos-json/issues</url>
+  </issueManagement>
+  <licenses>
+    <license>
+      <name>MIT</name>
+      <url>https://github.com/VsSekorin/cactoos-json/blob/master/LICENSE</url>
+      <distribution>site</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>1</id>
+      <name>Vseslav Sekorin</name>
+      <email>vssekorin@gmail.com</email>
+      <organization>vssekorin.com</organization>
+      <organizationUrl>http://www.vssekorin.com</organizationUrl>
+      <roles>
+        <role>Architect</role>
+        <role>Developer</role>
+      </roles>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:git@github.com:vssekorin/cactoos-json.git</connection>
+    <developerConnection>scm:git:git@github.com:vssekorin/cactoos-json.git</developerConnection>
+    <url>https://github.com/vssekorin/cactoos-json</url>
+  </scm>
+  <ciManagement>
+    <system>rultor</system>
+    <url>http://www.rultor.com/s/cactoos-json</url>
+  </ciManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.cactoos</groupId>
+      <artifactId>cactoos</artifactId>
+      <version>0.29.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-core</artifactId>
+      <version>1.3</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>com.qulice</groupId>
+          <artifactId>qulice-maven-plugin</artifactId>
+          <version>0.17</version>
+          <configuration>
+            <license>file:${basedir}/LICENSE.txt</license>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>qulice</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.qulice</groupId>
+            <artifactId>qulice-maven-plugin</artifactId>
+            <configuration>
+              <excludes combine.children="append">
+                <exclude>checkstyle:/src/site/resources/.*</exclude>
+              </excludes>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>
