@@ -49,7 +49,7 @@ public final class TextJson extends JsonEnvelope {
      */
     public TextJson(final Text text) {
         super(() -> () -> new InputStreamOf(
-            String.format("%s%s%s", "\"", text.asString(), "\"")
+            String.join("", "\"", text.asString(), "\"")
         ));
     }
 }

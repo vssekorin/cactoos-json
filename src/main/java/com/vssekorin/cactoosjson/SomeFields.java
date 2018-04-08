@@ -92,7 +92,7 @@ public final class SomeFields extends JsonEnvelope {
                         .reduce(SequenceInputStream::new)
                         .orElse(new InputStreamOf(""))
                 ),
-                new InputStreamOf(String.format("%s%s", indent, "}"))
+                new InputStreamOf(String.join("", indent, "}"))
             );
         });
     }

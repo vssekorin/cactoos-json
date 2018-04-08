@@ -48,7 +48,7 @@ public final class StringJson extends JsonEnvelope {
      */
     public StringJson(final String str) {
         super(() -> () -> new InputStreamOf(
-            String.format("%s%s%s", "\"", str, "\"")
+            String.join("", "\"", str, "\"")
         ));
     }
 }

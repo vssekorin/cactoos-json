@@ -54,7 +54,7 @@ public final class FieldJson extends JsonEnvelope {
         final String indent) {
         super(() -> () -> new SequenceInputStream(
             new InputStreamOf(
-                String.format("%s%s%s%s", indent, "    \"", name, "\": ")
+                String.join("", indent, "    \"", name, "\": ")
             ),
             new ValueJson(value).stream()
         ));
