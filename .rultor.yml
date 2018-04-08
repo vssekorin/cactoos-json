@@ -1,23 +1,10 @@
 docker:
   image: yegor256/java8
-env:
-  MAVEN_OPTS: -XX:MaxPermSize=256m -Xmx1g
-  JAVA_OPTS: -XX:MaxPermSize=256m -Xmx1g
-install: |
+install: |-
   java -version
 merge:
-  script: |
-    mvn clean install -Pqulice --errors
-    mvn clean site -Psite --errors
-    mvn clean
-deploy:
-  script: |
-    mvn clean deploy -Pqulice --errors
-release:
   script: |-
-    [[ "${tag}" =~ ^[0-9]+(\.[0-9]+)*$ ]] || exit -1
-    mvn versions:set "-DnewVersion=${tag}"
-    git commit -am "${tag}"
-    mvn clean deploy -Pqulice --errors
+    mvn clean install -Pqulice
+    mvn clean --quiet
 architect:
   - VsSekorin
