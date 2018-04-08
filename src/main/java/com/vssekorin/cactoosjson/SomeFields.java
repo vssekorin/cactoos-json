@@ -69,14 +69,19 @@ public final class SomeFields extends JsonEnvelope {
         final String indent) {
         super(() -> () -> {
             final List<InputStream> streams = new ArrayList<>(names.size());
-            for (final String name : names) {
-                final Field field = object.getClass().getDeclaredField(name);
+            for (int ind = 0; ind < names.size(); ++ind) {
+                final Field field =
+                    object.getClass().getDeclaredField(names.get(ind));
                 field.setAccessible(true);
                 final Object value = field.get(object);
                 streams.add(
                     new SequenceInputStream(
                         new FieldJson(field.getName(), value, indent).stream(),
-                        new InputStreamOf(",\n")
+                        new InputStreamOf(
+                            //@checkstyle AvoidInlineConditionalsCheck (2 lines)
+                            ind == names.size() - 1
+                                ? "\n" : ",\n"
+                        )
                     )
                 );
             }

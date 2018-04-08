@@ -45,7 +45,7 @@ public final class IterableJsonTest {
             new TextOf(
                 new IterableJson(new ListOf<>(1, 2, 3)).stream()
             ).asString(),
-            Matchers.equalTo("[1, 2, 3, ]")
+            Matchers.equalTo("[1, 2, 3]")
         );
     }
 }
