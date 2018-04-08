@@ -45,7 +45,7 @@ public final class SomeFieldsTest {
             new TextOf(
                 new SomeFields(new Example(), "inm").stream()
             ).asString(),
-            Matchers.containsString("    \"inm\": 123,")
+            Matchers.containsString("    \"inm\": 123")
         );
     }
 }

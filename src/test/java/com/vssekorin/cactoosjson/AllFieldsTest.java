@@ -47,7 +47,7 @@ public final class AllFieldsTest {
             Matchers.stringContainsInOrder(
                 new ListOf<>(
                     "    \"inm\": 123,",
-                    "    \"str\": \"Example\","
+                    "    \"str\": \"Example\""
                 )
             )
         );

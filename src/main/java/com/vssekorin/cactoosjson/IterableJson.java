@@ -25,6 +25,7 @@ package com.vssekorin.cactoosjson;
 
 import java.io.InputStream;
 import java.io.SequenceInputStream;
+import java.util.Iterator;
 import org.cactoos.io.InputStreamOf;
 
 /**
@@ -59,14 +60,18 @@ public final class IterableJson extends JsonEnvelope {
     public IterableJson(final Iterable<Object> iterable) {
         super(() -> () -> {
             InputStream stream = new InputStreamOf("");
-            for (final Object val : iterable) {
+            final Iterator<Object> iterator = iterable.iterator();
+            while (iterator.hasNext()) {
                 stream = new SequenceInputStream(
                     stream,
-                    new SequenceInputStream(
-                        new ValueJson(val).stream(),
-                        new InputStreamOf(", ")
-                    )
+                    new ValueJson(iterator.next()).stream()
                 );
+                if (iterator.hasNext()) {
+                    stream = new SequenceInputStream(
+                        stream,
+                        new InputStreamOf(", ")
+                    );
+                }
             }
             return new SequenceInputStream(
                 new InputStreamOf("["),
