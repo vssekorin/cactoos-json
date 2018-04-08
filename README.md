@@ -16,6 +16,55 @@ These are the [design principles](http://www.elegantobjects.org#principles) behi
 
 Java version required: 1.8+.
 
+## Examples
+
+```java
+class MyObject {
+    private final String str = "str_";
+    final Text text = () -> "text_";
+    public int inm = 666;
+    Scalar<Long> lsc = () -> 567L;
+    MyObject2 sec = new MyObject2();
+}
+
+class MyObject2 {
+    private long lnm = 54L;
+    public List<Text> list = new ListOf<>(
+        () -> "one",
+        () -> "two",
+        () -> "three"
+    );
+    final Bytes bts = new BytesOf('b', '\t', '3');
+}
+```
+### AllFields
+
+Result of `new AllFields(new MyObject())`:
+```json
+{
+    "str": "str_",
+    "text": "text_",
+    "inm": 666,
+    "lsc": 567,
+    "sec": {
+        "lnm": 54,
+        "list": ["one", "two", "three"],
+        "bts": "b	3"
+    }
+}
+```
+
+### SomeFields
+
+Result of `new SomeFields(new MyObject(), "text", "lsc")`:
+
+```json
+{
+    "text": "text_",
+    "lsc": 567
+}
+```
+
 ## How to contribute?
 
 Just fork the repo and send us a pull request.
